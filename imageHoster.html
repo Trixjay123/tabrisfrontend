@@ -3,20 +3,26 @@
 <meta name="viewport" content="width=device-width, initial-scale="1.0" />
 <meta charset="utf-8"/>
 <link rel="stylesheet" type="text/css" href="imageHoster.css">
-<title>Image Hosting Site</title>
+<title>Image Hoster</title>
 <style>
     .background {
-        background-color: #0000;
-        height: 1000px;
-        width: 800px;
+        background-color: #000000;
+        height: 600px;
+        max-height: 800px;
+        width: 600px;
+        max-width: 800px;
     }
 
     .fileButton {
-        position: relative;
-        background-color: rgb(207, 40, 223);
-        height: 80px;
-        width: 120px;
-        border-radius: 10px;
+        position: absolute;
+        background: linear-gradient(135deg, #a044ff, #ff7a1a);
+        height: 100px;
+        width: 140px;
+        border-radius: 8px;
+        margin-top: 30px;
+        left: 850px;
+        align-items: center;
+        justify-content: center;
     }
 
     .banner {
@@ -26,36 +32,32 @@
         align-items: center;
         background: linear-gradient(120deg red);
     }
+    .fileButton label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+    }
 </style>
 </head>
 <body class="background">
     <div class="banner">
         <div class="fileButton">
-        <input type="file" id="fileGrab" hidden>
-        <label for="fileGrab" class="custom-btn">Open File Here</label>
+        <input type="file" id="fileGrab" accept="image/jpg, image/jpeg, image/png" hidden>
+        <label for="fileGrab" class="custom-btn">Drop a file here <br>or <br>Browse</label>
         </div>
     </div>
 <script>
-    document.getElementById('fileGrab').addEventListener('change', async function () {
-        const file = this.files[0];
-        if (!file) return;
+    document.getElementById('fileGrab').addEventListener('change', async function (){
+        
+    }
 
-        const formData = new FormData();
-        formData.append('file', file);
-
-        try {
-            const response = await fetch('http://26.81.94.252/upload', {
-                method: 'POST',
-                body: formData,
-            });
-            if (!response.ok) throw new Error(`Server error: ${response.status}`);
-
-            const result = await response.json();
-            console.log('Upload successful:', result);
-        } catch (err) {
-            console.error('Upload failed:', err);
-        }
-    });
+)
+    
 </script>
 </body>
 </html>
