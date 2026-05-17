@@ -7,7 +7,7 @@
   <title>Image Hoster</title>
   <style>
     .background {
-      background-color: #000000;
+      background-color: #ffffff;
       height: 600px;
       max-height: 800px;
       width: 600px;
@@ -25,14 +25,14 @@
       z-index: 1;
     }
 
-    .banner {
+    /* .banner {
       width: 100%;
       height: 150px;
       position: absolute;
       align-items: center;
       background-color: aliceblue;
-      display: flex;
-    }
+      display: flex; */
+    
     .fileButton label {
       display: flex;
       align-items: center;
@@ -41,7 +41,19 @@
       height: 100%;
       width: 100%;
       text-align: center;
-      cursor: pointer;
+      cursor: pointer;}
+
+      .urlBox {
+        display: flex;
+        text-align: center;
+        cursor: copy;
+        color: rgb(192, 191, 191);
+        background-color: rgb(250, 128, 13);
+        border: solid 4px black;
+        height: 100;
+        width: 400px;
+        border-radius: 4px;
+      }
     }
   </style>
 </head>
@@ -52,13 +64,25 @@
       <label for="fileGrab" class="custom-btn">Drop a file here <br>or<br> Browse</label>
     </div>
   </div>
-  <div>
-    <h1>Your Image:</h1>
+  <div class="urlBox">
+    <p>Your URL will Appear Here...</p>
   </div>
   <script>
-    window.onload = function () {document.getElementById('fileGrab').addEventListener("change", () => {
-    const imgReader =  new FileReader();
-    const imgData = document.getElementById('fileGrab').files[0]} )}
+    window.onload = function () {document.getElementById('fileGrab').addEventListener("change", async function () {
+    // const imgReader =  new FileReader();
+// the this.files keyword works as document.getElementById('fileGrab') since the referred to element has already been defined and therefore adding document.getElement Id on line62 would be redundant.
+    const imgData = this.files[0];
+    if (!imgData) return;
+    const backEndReceiver = await fetch ( , {
+      method: 'POST',
+      headers: {
+        'Content-Type': imgData.type },
+      body: imgData
+      })
+    const imgURL = await backEndReceiver.text()
+  
+  
+  } )}
 
 
     
