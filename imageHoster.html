@@ -125,7 +125,13 @@
 </body>
 </html>
   <script>
-    window.onload = function () {document.getElementById('fileGrab').addEventListener("change", async function () {
+    window.onload = function () {
+    const copyButton = document.getElementById('copyButton');
+      copyButton.addEventListener("click", async function () {
+      const urlDisplayText = document.getElementById('urlBox').innerText;
+      await navigator.clipboard.writeText(urlDisplayText); })
+
+    document.getElementById('fileGrab').addEventListener("change", async function () {
     // const imgReader =  new FileReader();
 // the this.files keyword works as document.getElementById('fileGrab') since the referred to element has already been defined and therefore adding document.getElement Id on line62 would be redundant.
     const imgData = this.files[0];
@@ -141,13 +147,11 @@
     document.getElementById('urlBox').innerText = imgURL;
 
     // copy button event listener to ensure the button is capable of copying whatever is inside the urlBox element.
-      const copyButton = document.getElementById('copyButton');
-      copyButton.addEventListener("click", async function () {
-        const urlDisplayText = document.getElementById('urlBox').innerText;
-        await navigator.clipboard.writeText(urlDisplayText);
+
       } 
     )
-  } )}
+    }
+  
 
 
     
@@ -165,7 +169,7 @@
     //     });
     //     if (!response.ok) throw new Error(`Server error: ${response.status}`);
     //     const result = await response.json();
-    //     console.log('Upload successful:', result);
+     //     console.log('Upload successful:', result);
     //   } catch (err) {
     //     console.error('Upload failed:', err);
     //   }
