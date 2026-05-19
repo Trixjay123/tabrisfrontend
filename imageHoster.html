@@ -130,7 +130,7 @@
 // the this.files keyword works as document.getElementById('fileGrab') since the referred to element has already been defined and therefore adding document.getElement Id on line62 would be redundant.
     const imgData = this.files[0];
     if (!imgData) return;
-    const backEndReceiver = await fetch ( , {
+    const backEndReceiver = await fetch ( 'https://vids-das-advisor-newly.trycloudflare.com/', {
       method: 'POST',
       headers: {
         'Content-Type': imgData.type },
@@ -138,13 +138,13 @@
       })
     const imgURL = await backEndReceiver.text()
     // acts as the method of replacing the urlBox placeholder with the URL that the backend generates.
-    document.getElementById('urlBox').innerText('imgURL')
+    document.getElementById('urlBox').innerText = imgURL;
 
     // copy button event listener to ensure the button is capable of copying whatever is inside the urlBox element.
       const copyButton = document.getElementById('copyButton');
       copyButton.addEventListener("click", async function () {
         const urlDisplayText = document.getElementById('urlBox').innerText;
-        await navigator.clipboard.writeText('urlDisplayText');
+        await navigator.clipboard.writeText(urlDisplayText);
       } 
     )
   } )}
