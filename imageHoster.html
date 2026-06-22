@@ -104,6 +104,7 @@
 </head>
 
 <body>
+  
   <div class="background">
     <div class="banner">
       <div class="fileButton">
@@ -113,13 +114,13 @@
         </label>
       </div>
     </div>
-<div class="urlRow">
-  <div class="urlBox" id="urlBox">Your URL will appear here...</div>
-  <img src="copyUrlButtonIcon.png" id="copyButton" class="copyButton">
-</div>
-    </div>
 
+    <div class="urlRow">
+      <div class="urlBox" id="urlBox">Your URL will appear here...</div>
+      <img src="copyUrlButtonIcon.png" id="copyButton" class="copyButton">
+    </div>
   </div>
+
   <script>
     window.onload = function () {
     const copyButton = document.getElementById('copyButton');
@@ -130,7 +131,7 @@
     document.getElementById('fileGrab').addEventListener("change", async function () {
     const imgData = this.files[0];
     if (!imgData) return;
-    const backEndReceiver = await fetch ( 'https://vids-das-advisor-newly.trycloudflare.com/', {
+    const backEndReceiver = await fetch ( '/upload', {
       method: 'POST',
       headers: {
         'Content-Type': imgData.type },
